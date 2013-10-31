@@ -1,0 +1,689 @@
+Archive member included because of file (symbol)
+
+/Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+                              ./src/main.o (SystemCoreClockUpdate)
+/Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o)
+                              ./src/main.o (memcpy)
+/Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+                              ./src/cr_startup_lpc11.o (__main)
+/Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+                              ./src/main.o (__aeabi_uidiv)
+/Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+                              /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o) (__aeabi_memcpy)
+/Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+                              ./src/main.o (__gnu_thumb1_case_uqi)
+
+Allocating common symbols
+Common symbol       size              file
+
+lamps               0xb0              ./src/main.o
+tx_msg_obj          0x14              ./src/main.o
+solenoids           0x30              ./src/main.o
+UARTBuffer          0x40              ./Common/src/uart.o
+receiveQueue        0x140             ./src/main.o
+lampFrameBuffer     0x4               ./src/main.o
+switches            0x50              ./src/main.o
+UARTStatus          0x4               ./Common/src/uart.o
+newButtonStatus     0x10              ./src/main.o
+transmitQueue       0x140             ./src/main.o
+msg_obj             0x14              ./src/main.o
+lampBuffer          0x10              ./src/main.o
+allcall_obj         0x14              ./src/main.o
+buttonStatus        0x10              ./src/main.o
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 ./src/cr_startup_lpc11.o
+ .data          0x0000000000000000        0x0 ./src/cr_startup_lpc11.o
+ .bss           0x0000000000000000        0x0 ./src/cr_startup_lpc11.o
+ .text          0x0000000000000000        0x0 ./src/main.o
+ .data          0x0000000000000000        0x0 ./src/main.o
+ .bss           0x0000000000000000        0x0 ./src/main.o
+ .text.setPowerStatusPolling
+                0x0000000000000000        0xc ./src/main.o
+ .text.setSwitchTriggering
+                0x0000000000000000       0x10 ./src/main.o
+ .text.setLampTriggering
+                0x0000000000000000       0x10 ./src/main.o
+ .text.setSolenoidTriggering
+                0x0000000000000000       0x10 ./src/main.o
+ .crp           0x0000000000000000        0x4 ./src/main.o
+ .text          0x0000000000000000        0x0 ./Common/src/gpio.o
+ .data          0x0000000000000000        0x0 ./Common/src/gpio.o
+ .bss           0x0000000000000000        0x0 ./Common/src/gpio.o
+ .text.GPIOSetInterrupt
+                0x0000000000000000       0xdc ./Common/src/gpio.o
+ .text.GPIOIntEnable
+                0x0000000000000000       0x40 ./Common/src/gpio.o
+ .text.GPIOIntDisable
+                0x0000000000000000       0x40 ./Common/src/gpio.o
+ .text          0x0000000000000000        0x0 ./Common/src/uart.o
+ .data          0x0000000000000000        0x0 ./Common/src/uart.o
+ .bss           0x0000000000000000        0x0 ./Common/src/uart.o
+ .text.uart_set_divisors
+                0x0000000000000000       0xe8 ./Common/src/uart.o
+ .text          0x0000000000000000        0x0 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+ .data          0x0000000000000000        0x0 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+ .bss           0x0000000000000000        0x0 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+ .text          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o)
+ .data          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o)
+ .bss           0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o)
+ .text          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .data          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .bss           0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .text          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .data          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .bss           0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_idivmod
+                0x0000000000000000        0x6 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_uldivmod
+                0x0000000000000000       0x5a /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_ldivmod
+                0x0000000000000000       0x32 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_ldiv0
+                0x0000000000000000        0x2 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .text.__aeabi_division_idivq31+15
+                0x0000000000000000      0x188 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .text          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .data          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .bss           0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memmove
+                0x0000000000000000       0x1c /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memset_lowlevel
+                0x0000000000000000       0x2a /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memclr
+                0x0000000000000000        0x6 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .text.__aeabi_memset
+                0x0000000000000000        0x8 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .text          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .data          0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .bss           0x0000000000000000        0x0 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_sqi
+                0x0000000000000000       0x10 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_shi
+                0x0000000000000000       0x10 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_uhi
+                0x0000000000000000       0x10 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_si
+                0x0000000000000000       0x18 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+MFlash32         0x0000000000000000 0x0000000000008000 xr
+RamLoc8          0x0000000010000000 0x0000000000002000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD ./src/cr_startup_lpc11.o
+LOAD ./src/main.o
+LOAD ./Common/src/gpio.o
+LOAD ./Common/src/uart.o
+LOAD /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a
+START GROUP
+LOAD /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a
+LOAD /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a
+END GROUP
+                0x0000000000008000                __top_MFlash32 = 0x8000
+                0x0000000010002000                __top_RamLoc8 = 0x10002000
+
+.text           0x0000000000000000     0x1e88
+ FILL mask 0xff
+ *(.isr_vector)
+ .isr_vector    0x0000000000000000       0xc0 ./src/cr_startup_lpc11.o
+                0x0000000000000000                g_pfnVectors
+                0x00000000000000c0                . = ALIGN (0x4)
+                0x00000000000000c0                __section_table_start = .
+                0x00000000000000c0                __data_section_table = .
+                0x00000000000000c0        0x4 LONG 0x1e88 LOADADDR (.data)
+                0x00000000000000c4        0x4 LONG 0x10000100 ADDR (.data)
+                0x00000000000000c8        0x4 LONG 0x34 SIZEOF (.data)
+                0x00000000000000cc                __data_section_table_end = .
+                0x00000000000000cc                __bss_section_table = .
+                0x00000000000000cc        0x4 LONG 0x10000134 ADDR (.bss)
+                0x00000000000000d0        0x4 LONG 0x4a8 SIZEOF (.bss)
+                0x00000000000000d4                __bss_section_table_end = .
+                0x00000000000000d4                __section_table_end = .
+ *(.after_vectors*)
+ .after_vectors
+                0x00000000000000d4       0x80 ./src/cr_startup_lpc11.o
+                0x00000000000000d4                NMI_Handler
+                0x00000000000000d8                HardFault_Handler
+                0x00000000000000dc                SVC_Handler
+                0x00000000000000e0                PendSV_Handler
+                0x00000000000000e4                SysTick_Handler
+                0x00000000000000e8                data_init
+                0x00000000000000fa                bss_init
+                0x000000000000010c                ResetISR
+                0x0000000000000150                SSP0_IRQHandler
+                0x0000000000000150                TIMER16_1_IRQHandler
+                0x0000000000000150                ADC_IRQHandler
+                0x0000000000000150                TIMER32_1_IRQHandler
+                0x0000000000000150                BOD_IRQHandler
+                0x0000000000000150                WAKEUP_IRQHandler
+                0x0000000000000150                I2C_IRQHandler
+                0x0000000000000150                WDT_IRQHandler
+                0x0000000000000150                TIMER32_0_IRQHandler
+                0x0000000000000150                SSP1_IRQHandler
+                0x0000000000000150                IntDefaultHandler
+ *(.text*)
+ .text.CAN_error
+                0x0000000000000154        0x2 ./src/main.o
+                0x0000000000000154                CAN_error
+ *fill*         0x0000000000000156        0x2 00
+ .text.enqueueReceivedFrame
+                0x0000000000000158       0x38 ./src/main.o
+                0x0000000000000158                enqueueReceivedFrame
+ .text.receiveQueueFull
+                0x0000000000000190       0x20 ./src/main.o
+                0x0000000000000190                receiveQueueFull
+ .text.CAN_rx   0x00000000000001b0       0x2c ./src/main.o
+                0x00000000000001b0                CAN_rx
+ .text.receiveQueueEmpty
+                0x00000000000001dc       0x18 ./src/main.o
+                0x00000000000001dc                receiveQueueEmpty
+ .text.dequeueReceivedFrame
+                0x00000000000001f4       0x38 ./src/main.o
+                0x00000000000001f4                dequeueReceivedFrame
+ .text.enqueueTransmitFrame
+                0x000000000000022c       0x38 ./src/main.o
+                0x000000000000022c                enqueueTransmitFrame
+ .text.transmitQueueFull
+                0x0000000000000264       0x20 ./src/main.o
+                0x0000000000000264                transmitQueueFull
+ .text.transmitQueueEmpty
+                0x0000000000000284       0x18 ./src/main.o
+                0x0000000000000284                transmitQueueEmpty
+ .text.dequeueTransmitFrame
+                0x000000000000029c       0x38 ./src/main.o
+                0x000000000000029c                dequeueTransmitFrame
+ .text.CAN_tx   0x00000000000002d4       0x40 ./src/main.o
+                0x00000000000002d4                CAN_tx
+ .text.initializeLamps
+                0x0000000000000314       0x28 ./src/main.o
+                0x0000000000000314                initializeLamps
+ .text.initializeSwitches
+                0x000000000000033c       0x24 ./src/main.o
+                0x000000000000033c                initializeSwitches
+ .text.initializeSolenoids
+                0x0000000000000360       0x24 ./src/main.o
+                0x0000000000000360                initializeSolenoids
+ .text.primeTransmitBuffer
+                0x0000000000000384       0x3c ./src/main.o
+                0x0000000000000384                primeTransmitBuffer
+ .text.CAN_IRQHandler
+                0x00000000000003c0       0x14 ./src/main.o
+                0x00000000000003c0                CAN_IRQHandler
+ .text.clearLampBuffer
+                0x00000000000003d4       0x2c ./src/main.o
+                0x00000000000003d4                clearLampBuffer
+ .text.checkLampBright
+                0x0000000000000400       0x1c ./src/main.o
+                0x0000000000000400                checkLampBright
+ .text.buildLampFrameBuffer
+                0x000000000000041c      0x154 ./src/main.o
+                0x000000000000041c                buildLampFrameBuffer
+ .text.writeLEDMatrix
+                0x0000000000000570       0x68 ./src/main.o
+                0x0000000000000570                writeLEDMatrix
+ .text.decodeArbField
+                0x00000000000005d8       0x34 ./src/main.o
+                0x00000000000005d8                decodeArbField
+ .text.ADCRead  0x000000000000060c       0x54 ./src/main.o
+                0x000000000000060c                ADCRead
+ .text.sendBoardID1
+                0x0000000000000660       0x50 ./src/main.o
+                0x0000000000000660                sendBoardID1
+ .text.sendBoardID2
+                0x00000000000006b0       0x48 ./src/main.o
+                0x00000000000006b0                sendBoardID2
+ .text.sendPowerStatus
+                0x00000000000006f8       0x7c ./src/main.o
+                0x00000000000006f8                sendPowerStatus
+ .text.sendPowerStatusPolling
+                0x0000000000000774       0x4c ./src/main.o
+                0x0000000000000774                sendPowerStatusPolling
+ .text.processIncomingSystemManagementFrame
+                0x00000000000007c0       0x88 ./src/main.o
+                0x00000000000007c0                processIncomingSystemManagementFrame
+ .text.sendSwitchStatus
+                0x0000000000000848       0x74 ./src/main.o
+                0x0000000000000848                sendSwitchStatus
+ .text.processSwitchUpdate
+                0x00000000000008bc       0x50 ./src/main.o
+                0x00000000000008bc                processSwitchUpdate
+ .text.readSwitchCol
+                0x000000000000090c       0xe6 ./src/main.o
+                0x000000000000090c                readSwitchCol
+ *fill*         0x00000000000009f2        0x2 00
+ .text.sendSwitchPolling
+                0x00000000000009f4       0x5c ./src/main.o
+                0x00000000000009f4                sendSwitchPolling
+ .text.setSwitchPolling
+                0x0000000000000a50       0x24 ./src/main.o
+                0x0000000000000a50                setSwitchPolling
+ .text.sendSwitchTriggering
+                0x0000000000000a74       0x5c ./src/main.o
+                0x0000000000000a74                sendSwitchTriggering
+ .text.processIncomingSwitchMatrixFrame
+                0x0000000000000ad0       0xa0 ./src/main.o
+                0x0000000000000ad0                processIncomingSwitchMatrixFrame
+ .text.sendLampStatus
+                0x0000000000000b70       0x58 ./src/main.o
+                0x0000000000000b70                sendLampStatus
+ .text.setLampStatus
+                0x0000000000000bc8       0x90 ./src/main.o
+                0x0000000000000bc8                setLampStatus
+ .text.setLampDefaults
+                0x0000000000000c58       0x4c ./src/main.o
+                0x0000000000000c58                setLampDefaults
+ .text.sendLampDefaults
+                0x0000000000000ca4       0x68 ./src/main.o
+                0x0000000000000ca4                sendLampDefaults
+ .text.sendLampTriggering
+                0x0000000000000d0c       0x5c ./src/main.o
+                0x0000000000000d0c                sendLampTriggering
+ .text.processIncomingLampMatrixFrame
+                0x0000000000000d68       0xc8 ./src/main.o
+                0x0000000000000d68                processIncomingLampMatrixFrame
+ .text.updateSolenoidOutputs
+                0x0000000000000e30       0x80 ./src/main.o
+                0x0000000000000e30                updateSolenoidOutputs
+ .text.sendSolenoidStatus
+                0x0000000000000eb0       0x58 ./src/main.o
+                0x0000000000000eb0                sendSolenoidStatus
+ .text.setSolenoidStatus
+                0x0000000000000f08       0x30 ./src/main.o
+                0x0000000000000f08                setSolenoidStatus
+ .text.sendSolenoidDefaults
+                0x0000000000000f38       0x5c ./src/main.o
+                0x0000000000000f38                sendSolenoidDefaults
+ .text.setSolenoidDefaults
+                0x0000000000000f94       0x18 ./src/main.o
+                0x0000000000000f94                setSolenoidDefaults
+ .text.sendSolenoidTriggering
+                0x0000000000000fac       0x5c ./src/main.o
+                0x0000000000000fac                sendSolenoidTriggering
+ .text.processIncomingSolenoidFrame
+                0x0000000000001008       0xb0 ./src/main.o
+                0x0000000000001008                processIncomingSolenoidFrame
+ .text.processIncomingFrame
+                0x00000000000010b8       0x74 ./src/main.o
+                0x00000000000010b8                processIncomingFrame
+ .text.setup_io
+                0x000000000000112c      0x248 ./src/main.o
+                0x000000000000112c                setup_io
+ .text.read_dip_switch
+                0x0000000000001374       0x42 ./src/main.o
+                0x0000000000001374                read_dip_switch
+ *fill*         0x00000000000013b6        0x2 00
+ .text.setup_timer
+                0x00000000000013b8       0x4c ./src/main.o
+                0x00000000000013b8                setup_timer
+ .text.startup.main
+                0x0000000000001404      0x308 ./src/main.o
+                0x0000000000001404                main
+ .text.TIMER16_0_IRQHandler
+                0x000000000000170c      0x10c ./src/main.o
+                0x000000000000170c                TIMER16_0_IRQHandler
+ .text.GPIOInit
+                0x0000000000001818       0x44 ./Common/src/gpio.o
+                0x0000000000001818                GPIOInit
+ .text.GPIOIntStatus
+                0x000000000000185c       0x48 ./Common/src/gpio.o
+                0x000000000000185c                GPIOIntStatus
+ .text.GPIOIntClear
+                0x00000000000018a4       0x40 ./Common/src/gpio.o
+                0x00000000000018a4                GPIOIntClear
+ .text.PIOINT3_IRQHandler
+                0x00000000000018e4       0x30 ./Common/src/gpio.o
+                0x00000000000018e4                PIOINT3_IRQHandler
+ .text.PIOINT2_IRQHandler
+                0x0000000000001914       0x30 ./Common/src/gpio.o
+                0x0000000000001914                PIOINT2_IRQHandler
+ .text.PIOINT1_IRQHandler
+                0x0000000000001944       0x30 ./Common/src/gpio.o
+                0x0000000000001944                PIOINT1_IRQHandler
+ .text.PIOINT0_IRQHandler
+                0x0000000000001974       0x30 ./Common/src/gpio.o
+                0x0000000000001974                PIOINT0_IRQHandler
+ .text.GPIOGetValue
+                0x00000000000019a4       0x38 ./Common/src/gpio.o
+                0x00000000000019a4                GPIOGetValue
+ .text.GPIOSetValue
+                0x00000000000019dc       0x14 ./Common/src/gpio.o
+                0x00000000000019dc                GPIOSetValue
+ .text.GPIOSetDir
+                0x00000000000019f0       0x30 ./Common/src/gpio.o
+                0x00000000000019f0                GPIOSetDir
+ .text.UART_IRQHandler
+                0x0000000000001a20       0x9c ./Common/src/uart.o
+                0x0000000000001a20                UART_IRQHandler
+ .text.UARTInit
+                0x0000000000001abc       0xc8 ./Common/src/uart.o
+                0x0000000000001abc                UARTInit
+ .text.UARTSend
+                0x0000000000001b84       0x24 ./Common/src/uart.o
+                0x0000000000001b84                UARTSend
+ .text.SystemCoreClockUpdate
+                0x0000000000001ba8       0x9c /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+                0x0000000000001ba8                SystemCoreClockUpdate
+ .text.SystemInit
+                0x0000000000001c44       0x90 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+                0x0000000000001c44                SystemInit
+ .text.memcpy   0x0000000000001cd4        0x8 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o)
+                0x0000000000001cd4                memcpy
+ .text.__weak_main
+                0x0000000000001cdc        0x8 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+                0x0000000000001cdc                __main
+                0x0000000000001cdc                __weak_main
+ .text.__aeabi_division_uidivmod
+                0x0000000000001ce4       0x72 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+                0x0000000000001ce4                __aeabi_uidiv
+                0x0000000000001ce4                __aeabi_uidivmod
+ .text.__aeabi_division_idiv0
+                0x0000000000001d56        0x2 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+                0x0000000000001d56                __aeabi_idiv0
+ .text.__aeabi_memcpy
+                0x0000000000001d58       0x2c /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+                0x0000000000001d58                __aeabi_memcpy
+                0x0000000000001d58                __aeabi_memcpy4
+                0x0000000000001d58                __aeabi_memcpy8
+ .text.__gnu_thumb1_case_uqi
+                0x0000000000001d84       0x10 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+                0x0000000000001d84                __gnu_thumb1_case_uqi
+ *(.rodata .rodata.*)
+ .rodata.str1.1
+                0x0000000000001d94       0xa2 ./src/main.o
+ *fill*         0x0000000000001e36        0x2 00
+ .rodata.LPC_GPIO
+                0x0000000000001e38       0x10 ./Common/src/gpio.o
+ .rodata.CSWTCH.6
+                0x0000000000001e48       0x40 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+                0x0000000000001e88                . = ALIGN (0x4)
+
+.glue_7         0x0000000000001e88        0x0
+ .glue_7        0x0000000000000000        0x0 linker stubs
+
+.glue_7t        0x0000000000001e88        0x0
+ .glue_7t       0x0000000000000000        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000001e88        0x0
+ .vfp11_veneer  0x0000000000000000        0x0 linker stubs
+
+.v4_bx          0x0000000000001e88        0x0
+ .v4_bx         0x0000000000000000        0x0 linker stubs
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x0000000000001e88                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x0000000000001e88                __exidx_end = .
+                0x0000000000001e88                _etext = .
+
+.uninit_RESERVED
+                0x0000000010000000      0x100
+ *(.bss.$RESERVED*)
+ .bss.$RESERVED
+                0x0000000010000000       0xff ./src/main.o
+                0x0000000010000000                CAN_driver_memory
+                0x0000000010000100                . = ALIGN (0x4)
+ *fill*         0x00000000100000ff        0x1 00
+                0x0000000010000100                _end_uninit_RESERVED = .
+
+.data           0x0000000010000100       0x34 load address 0x0000000000001e88
+ FILL mask 0xff
+                0x0000000010000100                _data = .
+ *(vtable)
+ *(.data*)
+ .data.ClkInitTable
+                0x0000000010000100        0x8 ./src/main.o
+                0x0000000010000100                ClkInitTable
+ .data.rom      0x0000000010000108        0x4 ./src/main.o
+                0x0000000010000108                rom
+ .data.callbacks
+                0x000000001000010c       0x20 ./src/main.o
+                0x000000001000010c                callbacks
+ .data.UARTTxEmpty
+                0x000000001000012c        0x1 ./Common/src/uart.o
+                0x000000001000012c                UARTTxEmpty
+ *fill*         0x000000001000012d        0x3 00
+ .data.SystemCoreClock
+                0x0000000010000130        0x4 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+                0x0000000010000130                SystemCoreClock
+                0x0000000010000134                . = ALIGN (0x4)
+                0x0000000010000134                _edata = .
+
+.bss            0x0000000010000134      0x4a8 load address 0x0000000000001ebc
+                0x0000000010000134                _bss = .
+ *(.bss*)
+ .bss.receiveTail
+                0x0000000010000134        0x1 ./src/main.o
+                0x0000000010000134                receiveTail
+ .bss.boardAddress
+                0x0000000010000135        0x1 ./src/main.o
+                0x0000000010000135                boardAddress
+ .bss.powerStatusPollingInterval
+                0x0000000010000136        0x1 ./src/main.o
+                0x0000000010000136                powerStatusPollingInterval
+ .bss.isrCount  0x0000000010000137        0x1 ./src/main.o
+                0x0000000010000137                isrCount
+ .bss.switchPollingCount
+                0x0000000010000138        0x1 ./src/main.o
+                0x0000000010000138                switchPollingCount
+ .bss.keyMatrixCol
+                0x0000000010000139        0x1 ./src/main.o
+                0x0000000010000139                keyMatrixCol
+ .bss.transmitHead
+                0x000000001000013a        0x1 ./src/main.o
+                0x000000001000013a                transmitHead
+ .bss.transmitTail
+                0x000000001000013b        0x1 ./src/main.o
+                0x000000001000013b                transmitTail
+ .bss.ledMatrixFlag
+                0x000000001000013c        0x1 ./src/main.o
+                0x000000001000013c                ledMatrixFlag
+ .bss.powerStatusPollingFlag
+                0x000000001000013d        0x1 ./src/main.o
+                0x000000001000013d                powerStatusPollingFlag
+ .bss.solenoidFlag
+                0x000000001000013e        0x1 ./src/main.o
+                0x000000001000013e                solenoidFlag
+ .bss.ledBlinkCount
+                0x000000001000013f        0x1 ./src/main.o
+                0x000000001000013f                ledBlinkCount
+ .bss.solenoidCount
+                0x0000000010000140        0x1 ./src/main.o
+                0x0000000010000140                solenoidCount
+ *fill*         0x0000000010000141        0x3 00
+ .bss.dipSwitches
+                0x0000000010000144        0x4 ./src/main.o
+                0x0000000010000144                dipSwitches
+ .bss.powerStatusCount
+                0x0000000010000148        0x1 ./src/main.o
+                0x0000000010000148                powerStatusCount
+ *fill*         0x0000000010000149        0x1 00
+ .bss.heartbeatCounter
+                0x000000001000014a        0x2 ./src/main.o
+                0x000000001000014a                heartbeatCounter
+ .bss.keyMatrixFlag
+                0x000000001000014c        0x1 ./src/main.o
+                0x000000001000014c                keyMatrixFlag
+ .bss.receiveHead
+                0x000000001000014d        0x1 ./src/main.o
+                0x000000001000014d                receiveHead
+ .bss.switchPollingFlag
+                0x000000001000014e        0x1 ./src/main.o
+                0x000000001000014e                switchPollingFlag
+ .bss.ledBlinkFlag
+                0x000000001000014f        0x1 ./src/main.o
+                0x000000001000014f                ledBlinkFlag
+ .bss.powerStatusPollingCount
+                0x0000000010000150        0x1 ./src/main.o
+                0x0000000010000150                powerStatusPollingCount
+ .bss.waitForTXFinished
+                0x0000000010000151        0x1 ./src/main.o
+                0x0000000010000151                waitForTXFinished
+ .bss.ledMatrixCol
+                0x0000000010000152        0x1 ./src/main.o
+                0x0000000010000152                ledMatrixCol
+ *fill*         0x0000000010000153        0x1 00
+ .bss.gpio3_counter
+                0x0000000010000154        0x4 ./Common/src/gpio.o
+                0x0000000010000154                gpio3_counter
+ .bss.gpio1_counter
+                0x0000000010000158        0x4 ./Common/src/gpio.o
+                0x0000000010000158                gpio1_counter
+ .bss.p1_1_counter
+                0x000000001000015c        0x4 ./Common/src/gpio.o
+                0x000000001000015c                p1_1_counter
+ .bss.gpio2_counter
+                0x0000000010000160        0x4 ./Common/src/gpio.o
+                0x0000000010000160                gpio2_counter
+ .bss.p0_1_counter
+                0x0000000010000164        0x4 ./Common/src/gpio.o
+                0x0000000010000164                p0_1_counter
+ .bss.gpio0_counter
+                0x0000000010000168        0x4 ./Common/src/gpio.o
+                0x0000000010000168                gpio0_counter
+ .bss.p3_1_counter
+                0x000000001000016c        0x4 ./Common/src/gpio.o
+                0x000000001000016c                p3_1_counter
+ .bss.p2_1_counter
+                0x0000000010000170        0x4 ./Common/src/gpio.o
+                0x0000000010000170                p2_1_counter
+ .bss.UARTCount
+                0x0000000010000174        0x4 ./Common/src/uart.o
+                0x0000000010000174                UARTCount
+ *(COMMON)
+ COMMON         0x0000000010000178      0x420 ./src/main.o
+                0x0000000010000178                lamps
+                0x0000000010000228                tx_msg_obj
+                0x000000001000023c                solenoids
+                0x000000001000026c                receiveQueue
+                0x00000000100003ac                lampFrameBuffer
+                0x00000000100003b0                switches
+                0x0000000010000400                newButtonStatus
+                0x0000000010000410                transmitQueue
+                0x0000000010000550                msg_obj
+                0x0000000010000564                lampBuffer
+                0x0000000010000574                allcall_obj
+                0x0000000010000588                buttonStatus
+ COMMON         0x0000000010000598       0x44 ./Common/src/uart.o
+                0x0000000010000598                UARTBuffer
+                0x00000000100005d8                UARTStatus
+                0x00000000100005dc                . = ALIGN (0x4)
+                0x00000000100005dc                _ebss = .
+                0x00000000100005dc                PROVIDE (end, .)
+
+.noinit         0x00000000100005dc        0x0 load address 0x0000000000001ebc
+                0x00000000100005dc                _noinit = .
+ *(.noinit*)
+                0x00000000100005dc                . = ALIGN (0x4)
+                0x00000000100005dc                _end_noinit = .
+                0x00000000100005dc                PROVIDE (_pvHeapStart, .)
+                0x0000000010002000                PROVIDE (_vStackTop, (__top_RamLoc8 - 0x0))
+OUTPUT(base-module-software.axf elf32-littlearm)
+
+.debug_info     0x0000000000000000     0x4d6d
+ .debug_info    0x0000000000000000      0x292 ./src/cr_startup_lpc11.o
+ .debug_info    0x0000000000000292     0x2881 ./src/main.o
+ .debug_info    0x0000000000002b13      0xfb2 ./Common/src/gpio.o
+ .debug_info    0x0000000000003ac5      0xdc8 ./Common/src/uart.o
+ .debug_info    0x000000000000488d      0x4e0 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+
+.debug_abbrev   0x0000000000000000      0xb5f
+ .debug_abbrev  0x0000000000000000      0x114 ./src/cr_startup_lpc11.o
+ .debug_abbrev  0x0000000000000114      0x44e ./src/main.o
+ .debug_abbrev  0x0000000000000562      0x2ef ./Common/src/gpio.o
+ .debug_abbrev  0x0000000000000851      0x224 ./Common/src/uart.o
+ .debug_abbrev  0x0000000000000a75       0xea /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+
+.debug_loc      0x0000000000000000     0x2009
+ .debug_loc     0x0000000000000000      0x28f ./src/cr_startup_lpc11.o
+ .debug_loc     0x000000000000028f     0x1474 ./src/main.o
+ .debug_loc     0x0000000000001703      0x4b8 ./Common/src/gpio.o
+ .debug_loc     0x0000000000001bbb      0x3b6 ./Common/src/uart.o
+ .debug_loc     0x0000000000001f71       0x98 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+
+.debug_aranges  0x0000000000000000      0x320
+ .debug_aranges
+                0x0000000000000000       0x60 ./src/cr_startup_lpc11.o
+ .debug_aranges
+                0x0000000000000060      0x1e0 ./src/main.o
+ .debug_aranges
+                0x0000000000000240       0x80 ./Common/src/gpio.o
+ .debug_aranges
+                0x00000000000002c0       0x38 ./Common/src/uart.o
+ .debug_aranges
+                0x00000000000002f8       0x28 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+
+.debug_ranges   0x0000000000000000      0x348
+ .debug_ranges  0x0000000000000000       0x50 ./src/cr_startup_lpc11.o
+ .debug_ranges  0x0000000000000050      0x248 ./src/main.o
+ .debug_ranges  0x0000000000000298       0x70 ./Common/src/gpio.o
+ .debug_ranges  0x0000000000000308       0x28 ./Common/src/uart.o
+ .debug_ranges  0x0000000000000330       0x18 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+
+.debug_line     0x0000000000000000     0x11ac
+ .debug_line    0x0000000000000000       0xa4 ./src/cr_startup_lpc11.o
+ .debug_line    0x00000000000000a4      0xa53 ./src/main.o
+ .debug_line    0x0000000000000af7      0x2ef ./Common/src/gpio.o
+ .debug_line    0x0000000000000de6      0x244 ./Common/src/uart.o
+ .debug_line    0x000000000000102a      0x182 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+
+.debug_str      0x0000000000000000     0x16f0
+ .debug_str     0x0000000000000000      0x221 ./src/cr_startup_lpc11.o
+                                        0x249 (size before relaxing)
+ .debug_str     0x0000000000000221     0x1145 ./src/main.o
+                                       0x12cf (size before relaxing)
+ .debug_str     0x0000000000001366      0x167 ./Common/src/gpio.o
+                                        0x8f4 (size before relaxing)
+ .debug_str     0x00000000000014cd      0x18b ./Common/src/uart.o
+                                        0x8fc (size before relaxing)
+ .debug_str     0x0000000000001658       0x98 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+                                        0x3ca (size before relaxing)
+
+.comment        0x0000000000000000       0xe0
+ .comment       0x0000000000000000       0x70 ./src/cr_startup_lpc11.o
+                                         0x71 (size before relaxing)
+ .comment       0x0000000000000000       0x71 ./src/main.o
+ .comment       0x0000000000000000       0x71 ./Common/src/gpio.o
+ .comment       0x0000000000000000       0x71 ./Common/src/uart.o
+ .comment       0x0000000000000000       0x71 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+ .comment       0x0000000000000070       0x70 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o)
+                                         0x71 (size before relaxing)
+ .comment       0x0000000000000000       0x71 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+
+.ARM.attributes
+                0x0000000000000000       0x2f
+ .ARM.attributes
+                0x0000000000000000       0x31 ./src/cr_startup_lpc11.o
+ .ARM.attributes
+                0x0000000000000031       0x31 ./src/main.o
+ .ARM.attributes
+                0x0000000000000062       0x31 ./Common/src/gpio.o
+ .ARM.attributes
+                0x0000000000000093       0x31 ./Common/src/uart.o
+ .ARM.attributes
+                0x00000000000000c4       0x31 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)
+ .ARM.attributes
+                0x00000000000000f5       0x31 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(memcpy.o)
+ .ARM.attributes
+                0x0000000000000126       0x31 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .ARM.attributes
+                0x0000000000000157       0x21 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(division.o)
+ .ARM.attributes
+                0x0000000000000178       0x21 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(memcpy.o)
+ .ARM.attributes
+                0x0000000000000199       0x21 /Applications/lpcxpresso_5.1.2_2065/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.6.2/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+
+.debug_frame    0x0000000000000000      0x8b8
+ .debug_frame   0x0000000000000000       0xec ./src/cr_startup_lpc11.o
+ .debug_frame   0x00000000000000ec      0x5c0 ./src/main.o
+ .debug_frame   0x00000000000006ac      0x144 ./Common/src/gpio.o
+ .debug_frame   0x00000000000007f0       0x84 ./Common/src/uart.o
+ .debug_frame   0x0000000000000874       0x44 /Users/picxpert/Projects/pinball/base-module-software/CMSISv2p00_LPC11xx/Release/libCMSISv2p00_LPC11xx.a(system_LPC11xx.o)

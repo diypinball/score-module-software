@@ -1,0 +1,543 @@
+22:45:08 **** Clean-only build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make clean 
+rm -rf  ./src/core_cm0.o ./src/system_LPC11xx.o  ./src/core_cm0.d ./src/system_LPC11xx.d  libCMSISv2p00_LPC11xx.a
+ 
+22:45:08 **** Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+Building file: ../src/core_cm0.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -I../inc -O0 -Os -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/core_cm0.d" -MT"src/core_cm0.d" -o "src/core_cm0.o" "../src/core_cm0.c"
+Finished building: ../src/core_cm0.c
+ 
+Building file: ../src/system_LPC11xx.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -I../inc -O0 -Os -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/system_LPC11xx.d" -MT"src/system_LPC11xx.d" -o "src/system_LPC11xx.o" "../src/system_LPC11xx.c"
+Finished building: ../src/system_LPC11xx.c
+ 
+Building target: libCMSISv2p00_LPC11xx.a
+Invoking: MCU Archiver
+arm-none-eabi-ar -r  "libCMSISv2p00_LPC11xx.a"  ./src/core_cm0.o ./src/system_LPC11xx.o   
+arm-none-eabi-ar: creating libCMSISv2p00_LPC11xx.a
+Finished building target: libCMSISv2p00_LPC11xx.a
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size libCMSISv2p00_LPC11xx.a ; # arm-none-eabi-objdump -h -S libCMSISv2p00_LPC11xx.a >libCMSISv2p00_LPC11xx.lss
+   text	   data	    bss	    dec	    hex	filename
+      0	      0	      0	      0	      0	core_cm0.o (ex libCMSISv2p00_LPC11xx.a)
+    364	      4	      0	    368	    170	system_LPC11xx.o (ex libCMSISv2p00_LPC11xx.a)
+ 
+22:45:10 **** Clean-only build of configuration Debug for project score-module-software ****
+make clean 
+rm -rf  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o  ./src/cr_startup_lpc11.d ./src/main.d  ./Common/src/gpio.d ./Common/src/uart.d  base-module-software.axf
+ 
+22:45:10 **** Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/cr_startup_lpc11.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -Os -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/cr_startup_lpc11.d" -MT"src/cr_startup_lpc11.d" -o "src/cr_startup_lpc11.o" "../src/cr_startup_lpc11.c"
+Finished building: ../src/cr_startup_lpc11.c
+ 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../Common/src/gpio.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"Common/src/gpio.d" -MT"Common/src/gpio.d" -o "Common/src/gpio.o" "../Common/src/gpio.c"
+../Common/src/uart.c: In function 'UARTInit':
+../Common/src/uart.c:287:19: warning: variable 'regVal' set but not used [-Wunused-but-set-variable]
+Finished building: ../Common/src/gpio.c
+ 
+Building file: ../Common/src/uart.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"Common/src/uart.d" -MT"Common/src/uart.d" -o "Common/src/uart.o" "../Common/src/uart.c"
+Finished building: ../Common/src/uart.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+  13388	     52	   1768	  15208	   3b68	score-module-software.axf
+ 
+22:49:52 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+22:49:53 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+../src/main.c: In function 'main':
+ 
+../src/main.c:406:10: warning: unused variable 'i' [-Wunused-variable]
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6436	     52	   1396	   7884	   1ecc	score-module-software.axf
+ 
+23:15:07 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+23:15:09 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:406:10: warning: unused variable 'i' [-Wunused-variable]
+../src/main.c: At top level:
+../src/main.c:477:13: warning: 'small_delay' defined but not used [-Wunused-function]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6260	     52	   1396	   7708	   1e1c	score-module-software.axf
+ 
+23:15:23 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+23:15:24 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+make: Nothing to be done for `all'.
+23:18:25 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+23:18:27 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:406:10: warning: unused variable 'i' [-Wunused-variable]
+../src/main.c: At top level:
+../src/main.c:477:13: warning: 'small_delay' defined but not used [-Wunused-function]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6260	     52	   1396	   7708	   1e1c	score-module-software.axf
+ 
+23:26:48 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+23:26:49 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:406:10: warning: unused variable 'i' [-Wunused-variable]
+../src/main.c: At top level:
+../src/main.c:488:13: warning: 'small_delay' defined but not used [-Wunused-function]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6296	     52	   1400	   7748	   1e44	score-module-software.axf
+ 
+00:46:50 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+00:46:51 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:411:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6284	     52	   1400	   7736	   1e38	score-module-software.axf
+ 
+00:47:39 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+00:47:40 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:411:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6884	     52	   1400	   8336	   2090	score-module-software.axf
+ 
+00:47:44 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+00:47:46 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+make: Nothing to be done for `all'.
+00:53:00 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+00:53:02 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:411:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6940	     52	   1400	   8392	   20c8	score-module-software.axf
+ 
+01:05:07 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+01:05:08 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+make: Nothing to be done for `all'.
+01:08:28 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+01:08:29 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:411:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6940	     52	   1400	   8392	   20c8	score-module-software.axf
+ 
+01:17:42 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+01:17:43 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+make: Nothing to be done for `all'.
+08:48:56 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+08:48:57 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:411:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   6976	     52	   1400	   8428	   20ec	score-module-software.axf
+ 
+20:26:46 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+20:26:47 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'setScore':
+../src/main.c:421:2: warning: implicit declaration of function 'updateBoardScore' [-Wimplicit-function-declaration]
+../src/main.c: At top level:
+../src/main.c:424:6: warning: conflicting types for 'updateBoardScore' [enabled by default]
+../src/main.c:421:2: note: previous implicit declaration of 'updateBoardScore' was here
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:457:3: error: 'million' undeclared (first use in this function)
+../src/main.c:457:3: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:427:23: warning: unused variable 'scratchpad' [-Wunused-variable]
+../src/main.c:425:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:425:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+../src/main.c: In function 'main':
+../src/main.c:565:10: warning: unused variable 'i' [-Wunused-variable]
+make: *** [src/main.o] Error 1
+20:27:12 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+20:27:13 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:458:3: error: 'million' undeclared (first use in this function)
+../src/main.c:458:3: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:428:23: warning: unused variable 'scratchpad' [-Wunused-variable]
+../src/main.c:426:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:426:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+../src/main.c: In function 'main':
+../src/main.c:566:10: warning: unused variable 'i' [-Wunused-variable]
+make: *** [src/main.o] Error 1
+20:27:48 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+20:27:50 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:426:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:426:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+../src/main.c: In function 'main':
+../src/main.c:566:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   8084	     52	   1404	   9540	   2544	score-module-software.axf
+ 
+20:29:07 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+20:29:08 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:426:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:426:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+../src/main.c: In function 'main':
+../src/main.c:566:10: warning: unused variable 'i' [-Wunused-variable]
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   8104	     52	   1404	   9560	   2558	score-module-software.axf
+ 
+20:29:36 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+20:29:38 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:426:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:426:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+../src/main.c: In function 'main':
+../src/main.c:566:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   8104	     52	   1404	   9560	   2558	score-module-software.axf
+ 
+22:04:34 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+22:04:36 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:430:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:430:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+../src/main.c: In function 'sendScoreTriggering':
+../src/main.c:557:24: error: 'switchNum' undeclared (first use in this function)
+../src/main.c:557:24: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c: In function 'main':
+../src/main.c:629:10: warning: unused variable 'i' [-Wunused-variable]
+make: *** [src/main.o] Error 1
+22:04:49 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+22:04:50 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:430:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:430:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+../src/main.c: In function 'main':
+../src/main.c:629:10: warning: unused variable 'i' [-Wunused-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   8672	     52	   1408	  10132	   2794	score-module-software.axf
+ 
+22:06:01 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+22:06:02 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:430:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:430:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   8664	     52	   1408	  10124	   278c	score-module-software.axf
+ 
+22:09:12 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+22:09:13 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:430:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:430:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   8664	     52	   1408	  10124	   278c	score-module-software.axf
+ 
+22:09:40 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+22:09:41 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+Building file: ../src/main.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DDEBUG -D__CODE_RED -D__USE_CMSIS=CMSISv2p00_LPC11xx -I"/Users/picxpert/Projects/pinball/score-module-software/score-module-software/Common/inc" -I"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/inc" -O0 -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -mcpu=cortex-m0 -mthumb -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'updateBoardScore':
+../src/main.c:430:19: warning: variable 'hundredMillion' set but not used [-Wunused-but-set-variable]
+../src/main.c:430:10: warning: variable 'billion' set but not used [-Wunused-but-set-variable]
+Finished building: ../src/main.c
+ 
+Building target: score-module-software.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -L"/Users/picxpert/Projects/pinball/score-module-software/CMSISv2p00_LPC11xx/Debug" -Xlinker -Map="score-module-software.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "score-module-software_Debug.ld" -o "score-module-software.axf"  ./src/cr_startup_lpc11.o ./src/main.o  ./Common/src/gpio.o ./Common/src/uart.o   -lCMSISv2p00_LPC11xx
+Finished building target: score-module-software.axf
+ 
+make --no-print-directory post-build
+Performing post-build steps
+arm-none-eabi-size "score-module-software.axf"; # arm-none-eabi-objcopy -O binary "score-module-software.axf" "score-module-software.bin" ; checksum -p LPC11C24_301 -d "score-module-software.bin";
+   text	   data	    bss	    dec	    hex	filename
+   8676	     52	   1408	  10136	   2798	score-module-software.axf
+ 
+22:23:45 **** Incremental Build of configuration Debug for project CMSISv2p00_LPC11xx ****
+make all 
+make: Nothing to be done for `all'.
+22:23:46 **** Incremental Build of configuration Debug for project score-module-software ****
+make all 
+make: Nothing to be done for `all'.

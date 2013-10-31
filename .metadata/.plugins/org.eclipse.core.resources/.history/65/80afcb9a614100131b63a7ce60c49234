@@ -1,0 +1,748 @@
+/*
+===============================================================================
+ Name        : main.c
+ Author      : 
+ Version     :
+ Copyright   : Copyright (C) 
+ Description : main definition
+===============================================================================
+*/
+
+#ifdef __USE_CMSIS
+#include "LPC11xx.h"
+#endif
+
+#include <cr_section_macros.h>
+#include <NXP/crp.h>
+#include "rom_drivers.h"
+#include <stdlib.h>
+#include <string.h>
+
+//reserve ROM-RAM 0x1000 0050 - 0x1000 00B9
+__BSS(RESERVED) char CAN_driver_memory[0xFF];
+
+#ifndef NULL
+#define NULL    ((void *)0)
+#endif
+#define TRUE 1
+#define FALSE 0
+
+// Variable to store CRP value in. Will be placed automatically
+// by the linker when "Enable Code Read Protect" selected.
+// See crp.h header for more information
+__CRP const unsigned int CRP_WORD = CRP_NO_CRP ;
+
+#include "uart.h"
+#include "gpio.h"
+
+extern volatile uint32_t UARTCount;
+extern volatile uint8_t UARTBuffer[BUFSIZE];
+
+volatile uint16_t heartbeatCounter = 0;
+
+uint8_t powerStatusPollingInterval = 0;
+uint8_t powerStatusPollingCount = 0;
+volatile uint8_t powerStatusPollingFlag = 0;
+
+static void small_delay(int delay);
+void writeAS1107Register(uint8_t reg, uint8_t value);
+void writeAS1107Digit(uint8_t digit, uint8_t value);
+void setupAS1107();
+void writeAS1107Raw(uint8_t displayData[]);
+void writeAS1107Bright(uint8_t bright);
+void setup_io(void);
+void setup_timer(void);
+uint32_t read_dip_switch(void);
+
+#define RECEIVE_BUFFER_LENGTH 24
+CAN_MSG_OBJ receiveQueue[RECEIVE_BUFFER_LENGTH];
+volatile uint8_t receiveHead = 0;
+volatile uint8_t receiveTail = 0;
+uint8_t enqueueReceivedFrame(CAN_MSG_OBJ *msgIn);
+uint8_t dequeueReceivedFrame(CAN_MSG_OBJ *msgOut);
+uint8_t receiveQueueFull();
+uint8_t receiveQueueEmpty();
+
+uint8_t enqueueReceivedFrame(CAN_MSG_OBJ *msgIn) {
+	uint8_t i = (receiveHead + 1) % RECEIVE_BUFFER_LENGTH;
+	if(i != receiveTail) {
+		memcpy(&(receiveQueue[receiveHead]), msgIn, sizeof(CAN_MSG_OBJ));
+		receiveHead = i;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+uint8_t dequeueReceivedFrame(CAN_MSG_OBJ *msgOut) {
+	if(receiveQueueEmpty()) return FALSE;
+
+	memcpy(msgOut, &(receiveQueue[receiveTail]), sizeof(CAN_MSG_OBJ));
+	receiveTail = (receiveTail + 1) % RECEIVE_BUFFER_LENGTH;
+	return TRUE;
+}
+
+uint8_t receiveQueueFull() {
+	if(((receiveHead + 1) % RECEIVE_BUFFER_LENGTH) == receiveTail) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+uint8_t receiveQueueEmpty() {
+	if(receiveHead == receiveTail) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+#define TRANSMIT_BUFFER_LENGTH 24
+CAN_MSG_OBJ transmitQueue[TRANSMIT_BUFFER_LENGTH];
+volatile uint8_t transmitHead = 0;
+volatile uint8_t transmitTail = 0;
+uint8_t enqueueTransmitFrame(CAN_MSG_OBJ *msgIn);
+uint8_t dequeueTransmitFrame(CAN_MSG_OBJ *msgOut);
+uint8_t transmitQueueFull();
+uint8_t transmitQueueEmpty();
+
+uint8_t enqueueTransmitFrame(CAN_MSG_OBJ *msgIn) {
+	uint8_t i = (transmitHead + 1) % TRANSMIT_BUFFER_LENGTH;
+	if(i != transmitTail) {
+		memcpy(&(transmitQueue[transmitHead]), msgIn, sizeof(CAN_MSG_OBJ));
+		transmitHead = i;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+uint8_t dequeueTransmitFrame(CAN_MSG_OBJ *msgOut) {
+	if(transmitQueueEmpty()) return FALSE;
+
+	memcpy(msgOut, &(transmitQueue[transmitTail]), sizeof(CAN_MSG_OBJ));
+	transmitTail = (transmitTail + 1) % TRANSMIT_BUFFER_LENGTH;
+	return TRUE;
+}
+
+uint8_t transmitQueueFull() {
+	if(((transmitHead + 1) % TRANSMIT_BUFFER_LENGTH) == transmitTail) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+uint8_t transmitQueueEmpty() {
+	if(transmitHead == transmitTail) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+uint32_t dipSwitches = 0;
+uint8_t boardAddress = 0;
+
+ROM **rom = (ROM **)0x1fff1ff8;
+
+CAN_MSG_OBJ msg_obj;
+CAN_MSG_OBJ allcall_obj;
+CAN_MSG_OBJ tx_msg_obj;
+
+#define BUILD_ARB_FIELD(priority, bs, address, feature_type, feature_number, message_type) CAN_MSGOBJ_EXT | ((priority & 0x0f) << 25) | ((bs & 0x01) << 24) | (address << 16) | ((feature_type & 0x0f) << 12) | ((feature_number & 0x0f) << 8) | ((message_type & 0x0f) << 4)
+
+/* Initialize CAN Controller */
+uint32_t ClkInitTable[2] = {
+	0x00000000UL, // CANCLKDIV
+	0x00001C57UL  // CAN_BTR
+};
+
+/* Callback function prototypes */
+void CAN_rx(uint8_t msg_obj_num);
+void CAN_tx(uint8_t msg_obj_num);
+void CAN_error(uint32_t error_info);
+
+/* Publish CAN Callback Functions */
+CAN_CALLBACKS callbacks = {
+	CAN_rx,
+	CAN_tx,
+	CAN_error,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};
+
+/*	CAN receive callback */
+/*	Function is executed by the Callback handler after
+	a CAN message has been received */
+void CAN_rx(uint8_t msg_obj_num){
+
+  /* Determine which CAN message has been received */
+  msg_obj.msgobj = msg_obj_num;
+
+  /* Now load up the msg_obj structure with the CAN message */
+  (*rom)->pCAND->can_receive(&msg_obj);
+
+  if(!receiveQueueFull()) enqueueReceivedFrame(&msg_obj);
+  return;
+}
+
+volatile uint8_t waitForTXFinished = 0;
+#define TX_MSGOBJ_NUM 5
+/*	CAN transmit callback */
+/*	Function is executed by the Callback handler after
+	a CAN message has been transmitted */
+void CAN_tx(uint8_t msg_obj_num){
+    if(msg_obj_num == TX_MSGOBJ_NUM) {
+    	if(!transmitQueueEmpty()) {
+        	dequeueTransmitFrame(&tx_msg_obj);
+        	waitForTXFinished = TX_MSGOBJ_NUM;
+        	tx_msg_obj.msgobj = TX_MSGOBJ_NUM;
+        	(*rom)->pCAND->can_transmit(&tx_msg_obj);
+    	} else {
+    		waitForTXFinished = 0;
+    	}
+    }
+}
+
+void primeTransmitBuffer() {
+	if(waitForTXFinished == 0) {
+		if(!transmitQueueEmpty()) {
+			dequeueTransmitFrame(&tx_msg_obj);
+			waitForTXFinished = TX_MSGOBJ_NUM;
+			tx_msg_obj.msgobj = TX_MSGOBJ_NUM;
+			(*rom)->pCAND->can_transmit(&tx_msg_obj);
+		}
+	}
+}
+
+/*	CAN error callback */
+/*	Function is executed by the Callback handler after
+	an error has occured on the CAN bus */
+void CAN_error(uint32_t error_info){
+  return;
+}
+
+/*	CAN interrupt handler */
+/*	The CAN interrupt handler must be provided by the user application.
+	It's function is to call the isr() API located in the ROM */
+void CAN_IRQHandler (void){
+  (*rom)->pCAND->isr();
+}
+
+void decodeArbField(uint32_t arb_field, uint8_t *priority, uint8_t *bs, uint8_t *address, uint8_t *feature_type, uint8_t *feature_num, uint8_t *message_type, uint8_t *isRequest) {
+	*priority = (arb_field & 0x1E000000) >> 25;
+	*bs = (arb_field & 0x01000000) >> 24;
+	*address = (arb_field & 0x00FF0000) >> 16;
+	*feature_type = (arb_field & 0x0000F000) >> 12;
+	*feature_num = (arb_field & 0x00000F00) >> 8;
+	*message_type = (arb_field & 0x000000F0) >> 4;
+	if(arb_field & CAN_MSGOBJ_RTR) {
+		*isRequest = 1;
+	} else {
+		*isRequest = 0;
+	}
+	return;
+}
+
+#define ADC_INTERRUPT_FLAG    0	/* 1 is interrupt driven, 0 is polling */
+#define BURST_MODE            0 /* Burst mode works in interrupt driven mode only. */
+#define SINGLE_BURST_MODE     0 /* Single burst mode works in interrupt driven mode only. */
+#define ADGINTEN              0	/* global DONE flag generate interrupt */
+#define INTERNAL_VOLT         0	/* If this flag is on, it measures interval voltage,
+                                   core voltage, internal Vref, and temperature. */
+#define ADC_DEBUG             1
+#define ADC_DEBUG_CLEAR_CNT   (100) /* Number of samples until statistics are cleared */
+#define ADC_DEBUG_UPDATE_CNT  (5000) /* Number of samples until statistics are cleared */
+
+#define ADC_OFFSET            0x10
+#define ADC_INDEX             4
+
+#define ADC_DONE              0x80000000
+#define ADC_OVERRUN           0x40000000
+#define ADC_ADINT             0x00010000
+
+#define ADC_NUM               8			/* for LPC11xx */
+#define ADC_CLK               4400000		/* set to 4.4Mhz */
+
+uint32_t ADCRead( uint8_t channelNum )
+{
+	uint32_t regVal, ADC_Data;
+
+	/* channel number is 0 through 7 */
+	if ( channelNum > 7 )
+	{
+		channelNum = 0;		/* reset channel number to 0 */
+	}
+	LPC_ADC->CR &= 0xFFFFFF00;
+	LPC_ADC->CR |= (1 << 24) | (1 << channelNum);
+				/* switch channel,start A/D convert */
+	while ( 1 )			/* wait until end of A/D convert */
+	{
+	regVal = *(volatile unsigned long *)(LPC_ADC_BASE
+			+ ADC_OFFSET + ADC_INDEX * channelNum);
+	/* read result of A/D conversion */
+	if ( regVal & ADC_DONE )
+		{
+			break;
+		}
+	}
+
+	LPC_ADC->CR &= 0xF8FFFFFF;	/* stop ADC now */
+	if ( regVal & ADC_OVERRUN )	/* save data when it's not overrun, otherwise, return zero */
+	{
+		return ( 0 );
+	}
+	ADC_Data = ( regVal >> 6 ) & 0x3FF;
+	return ( ADC_Data );	/* return A/D conversion value */
+}
+
+void sendBoardID1(uint8_t priority) {
+	CAN_MSG_OBJ transmitObj;
+	transmitObj.mask = 0;
+	transmitObj.mode_id = BUILD_ARB_FIELD(priority, 1, boardAddress, 0x00, 0x00, 0x00);
+	transmitObj.dlc = 2;
+	transmitObj.data[0] = 0x00;
+	transmitObj.data[1] = 0x04;
+
+	if(!transmitQueueFull()) {
+		enqueueTransmitFrame(&transmitObj);
+		primeTransmitBuffer();
+	}
+}
+
+void sendBoardID2(uint8_t priority) {
+	CAN_MSG_OBJ transmitObj;
+	transmitObj.mask = 0;
+	transmitObj.mode_id = BUILD_ARB_FIELD(priority, 1, boardAddress, 0x00, 0x00, 0x01);
+	transmitObj.dlc = 2;
+	transmitObj.data[0] = 0x01;
+	transmitObj.data[1] = 0x00;
+
+	if(!transmitQueueFull()) {
+		enqueueTransmitFrame(&transmitObj);
+		primeTransmitBuffer();
+	}
+}
+
+void sendPowerStatus(uint8_t priority) {
+	CAN_MSG_OBJ transmitObj;
+	transmitObj.mask = 0;
+	transmitObj.mode_id = BUILD_ARB_FIELD(priority, 1, boardAddress, 0x00, 0x00, 0x02);
+	transmitObj.dlc = 8;
+
+	transmitObj.data[0] = (ADCRead(5) >> 2) & 0xFF;
+	transmitObj.data[1] = 0x00;
+	transmitObj.data[2] = 0x00;
+	transmitObj.data[3] = 0x00;
+	transmitObj.data[4] = 0x00;
+	transmitObj.data[5] = 0x00;
+	transmitObj.data[6] = 0x00;
+	transmitObj.data[7] = 0x00;
+
+	if(!transmitQueueFull()) {
+		enqueueTransmitFrame(&transmitObj);
+		primeTransmitBuffer();
+	}
+}
+
+void sendPowerStatusPolling(uint8_t priority) {
+	CAN_MSG_OBJ transmitObj;
+	transmitObj.mask = 0;
+	transmitObj.mode_id = BUILD_ARB_FIELD(priority, 1, boardAddress, 0x00, 0x00, 0x03);
+	transmitObj.dlc = 1;
+	transmitObj.data[0] = powerStatusPollingInterval;
+
+	if(!transmitQueueFull()) {
+		enqueueTransmitFrame(&transmitObj);
+		primeTransmitBuffer();
+	}
+}
+
+void setPowerStatusPolling(uint8_t pollingValue) {
+	powerStatusPollingInterval = pollingValue;
+}
+
+void processIncomingSystemManagementFrame(CAN_MSG_OBJ *incomingMsg) {
+	uint8_t priority, bs, address, featureType, featureNum, messageType, isRequest;
+	decodeArbField(incomingMsg->mode_id, &priority, &bs, &address, &featureType, &featureNum, &messageType, &isRequest);
+
+	switch(messageType) {
+	case 0x00: // Board ID 1 - requestable only
+		if(isRequest) sendBoardID1(priority);
+		break;
+	case 0x01: // Board ID 2 - requestable only
+		if(isRequest) sendBoardID2(priority);
+		break;
+	case 0x02: // Power status - requestable only
+		if(isRequest) sendPowerStatus(priority);
+		break;
+	case 0x03: // Power Status Polling - set or request
+		if(isRequest) {
+			sendPowerStatusPolling(priority);
+		} else {
+			if(incomingMsg->dlc >= 1) setPowerStatusPolling(incomingMsg->data[0]);
+		}
+		break;
+	default:
+		break;
+	}
+
+	return;
+}
+
+void processIncomingFrame(CAN_MSG_OBJ *incomingMsg) {
+	uint8_t priority, bs, address, featureType, featureNum, messageType, isRequest;
+	decodeArbField(incomingMsg->mode_id, &priority, &bs, &address, &featureType, &featureNum, &messageType, &isRequest);
+
+	if(!((address == boardAddress) || (!bs))) return;
+
+	switch(featureType) {
+	case 0x00: // System Management
+		processIncomingSystemManagementFrame(incomingMsg);
+		break;
+	case 0x04: // Score module
+		//processIncomingScoreDisplayFrame(incomingMsg);
+		break;
+	default:
+		break;
+	}
+}
+
+int main(void) {
+	uint8_t i = 0;
+
+	SystemCoreClockUpdate();
+
+	GPIOInit();
+
+	UARTInit(115200);
+
+	UARTSend((uint8_t *)"\r\nDIYPinball.ca Score Board 0.1\r\n\r\n", 34);
+
+	UARTSend((uint8_t *)"Setting up IO\r\n", 15);
+	setup_io();
+
+	UARTSend((uint8_t *)"Reading DIP switch\r\n", 20);
+	dipSwitches = read_dip_switch();
+
+	boardAddress = dipSwitches & 0xFF;
+
+	setupAS1107();
+	writeAS1107Digit(0, 1);
+	writeAS1107Digit(1, 2);
+	writeAS1107Digit(2, 3);
+	writeAS1107Digit(3, 4);
+	writeAS1107Digit(4, 5);
+	writeAS1107Digit(5, 6);
+	writeAS1107Digit(6, 7);
+	writeAS1107Digit(7, 8);
+
+	UARTSend((uint8_t *)"Setting up CAN module\r\n", 23);
+	/* Initialize the CAN controller */
+	(*rom)->pCAND->init_can(&ClkInitTable[0], 1);
+
+	/* Configure the CAN callback functions */
+	(*rom)->pCAND->config_calb(&callbacks);
+
+	/* Enable the CAN Interrupt */
+	NVIC_EnableIRQ(CAN_IRQn);
+
+	msg_obj.msgobj = 1;
+	msg_obj.mode_id = BUILD_ARB_FIELD(0, 1, boardAddress, 0, 0, 0) | CAN_MSGOBJ_RTR;
+	msg_obj.mask = 0x01FF0000;
+	(*rom)->pCAND->config_rxmsgobj(&msg_obj);
+
+	msg_obj.msgobj = 2;
+	msg_obj.mode_id = BUILD_ARB_FIELD(0, 1, boardAddress, 0, 0, 0);
+	msg_obj.mask = 0x01FF0000;
+	(*rom)->pCAND->config_rxmsgobj(&msg_obj);
+
+	allcall_obj.msgobj = 3;
+	allcall_obj.mode_id = BUILD_ARB_FIELD(0, 0, 0, 0, 0, 0) | CAN_MSGOBJ_RTR;
+	allcall_obj.mask = 0x01000000;
+	(*rom)->pCAND->config_rxmsgobj(&allcall_obj);
+
+	allcall_obj.msgobj = 4;
+	allcall_obj.mode_id = BUILD_ARB_FIELD(0, 0, 0, 0, 0, 0);
+	allcall_obj.mask = 0x01000000;
+	(*rom)->pCAND->config_rxmsgobj(&allcall_obj);
+
+	UARTSend((uint8_t *)"Setting up 16 bit timer 0\r\n", 27);
+	setup_timer();
+
+	//sendBoardID1(0x0F);
+	//sendBoardID2(0x0F);
+
+	while(1) {
+		// Process heartbeat
+		if(heartbeatCounter > 500) {
+			GPIOSetValue(PORT0, 1, 1);
+		} else {
+			GPIOSetValue(PORT0, 1, 0);
+		}
+
+		while(!receiveQueueEmpty()) {
+			dequeueReceivedFrame(&msg_obj);
+			processIncomingFrame(&msg_obj);
+		}
+
+		if(powerStatusPollingFlag) {
+			if(powerStatusPollingInterval != 0) {
+				powerStatusPollingCount++;
+				if(powerStatusPollingCount >= powerStatusPollingInterval) {
+					sendPowerStatus(0x0E);
+					powerStatusPollingCount = 0;
+				}
+			}
+
+			powerStatusPollingFlag = 0;
+		}
+	}
+	return 0;
+}
+
+static void small_delay(int delay)
+{
+    delay = delay * 10;
+    while (delay > 0) {
+        delay--;
+    }
+}
+
+void writeAS1107Register(uint8_t reg, uint8_t value) {
+	uint8_t i, j;
+
+	reg &= 0x0f; // masking off DNC bits
+	GPIOSetValue(PORT2, 8, 0);
+	GPIOSetValue(PORT0, 3, 0);
+	GPIOSetValue(PORT2, 1, 1);
+	small_delay(5);
+	GPIOSetValue(PORT2, 1, 0);
+	small_delay(5);
+
+	for(i=0; i< 8; i++) {
+		j = 7 - i;
+		if(reg & (1 << j)) {
+			GPIOSetValue(PORT2, 8, 1);
+		} else {
+			GPIOSetValue(PORT2, 8, 0);
+		}
+		GPIOSetValue(PORT0, 3, 1);
+		small_delay(5);
+		GPIOSetValue(PORT0, 3, 0);
+		small_delay(5);
+	}
+
+	for(i=0; i< 8; i++) {
+		j = 7 - i;
+		if(value & (1 << j)) {
+			GPIOSetValue(PORT2, 8, 1);
+		} else {
+			GPIOSetValue(PORT2, 8, 0);
+		}
+		GPIOSetValue(PORT0, 3, 1);
+		small_delay(5);
+		GPIOSetValue(PORT0, 3, 0);
+		small_delay(5);
+	}
+
+	small_delay(5);
+	GPIOSetValue(PORT2, 1, 1);
+}
+
+void writeAS1107Digit(uint8_t digit, uint8_t value) {
+	// enable decoding for all digits
+	writeAS1107Register(0x09, 0xFF);
+	// set code B decoding
+	writeAS1107Register(0x0E, 0x00);
+	// a value of 11 is a code for a blank digit. 0-9 map to those digits. all others are blank.
+	switch(value) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+			break;
+		default:
+			value = 0x0F;
+	}
+	if(digit > 7) digit = 7;
+	writeAS1107Register(digit + 1, value);
+}
+
+void setupAS1107() {
+	// bring device out of shutdown
+	writeAS1107Register(0x0C, 0x81);
+	// enable decoding on all digits
+	writeAS1107Register(0x09, 0xFF);
+	// full brightness
+	writeAS1107Bright(0xFF);
+	// scan all digits
+	writeAS1107Register(0x0B, 0x07);
+	// update feature register to default
+	writeAS1107Register(0x0E, 0x00);
+	// disable test mode
+	writeAS1107Register(0x0F, 0x00);
+
+}
+
+void writeAS1107Raw(uint8_t displayData[]) {
+	// disable decoding for all digits
+	writeAS1107Register(0x09, 0x00);
+	// write each byte to the display
+	writeAS1107Register(0x01, displayData[0]);
+	writeAS1107Register(0x02, displayData[1]);
+	writeAS1107Register(0x03, displayData[2]);
+	writeAS1107Register(0x04, displayData[3]);
+	writeAS1107Register(0x05, displayData[4]);
+	writeAS1107Register(0x06, displayData[5]);
+	writeAS1107Register(0x07, displayData[6]);
+	writeAS1107Register(0x08, displayData[7]);
+}
+
+void writeAS1107Bright(uint8_t bright) {
+	bright = bright & 0xF0;
+	bright = bright >> 4;
+	writeAS1107Register(0x0A, bright);
+}
+
+void setup_io() {
+	// Set up heartbeat pin
+	GPIOSetDir(PORT0, 1, 1);
+	GPIOSetValue(PORT0, 1, 0);
+
+	// Set up DIP switch pins
+	GPIOSetDir(PORT0, 6, 0);
+	GPIOSetDir(PORT0, 7, 0);
+	GPIOSetDir(PORT2, 10, 0);
+	GPIOSetDir(PORT2, 2, 0);
+	GPIOSetDir(PORT0, 8, 0);
+	GPIOSetDir(PORT1, 10, 0);
+	GPIOSetDir(PORT2, 11, 0);
+	LPC_IOCON->R_PIO0_11 &= ~0x8F; /*  ADC I/O config */
+	LPC_IOCON->R_PIO0_11 |= 0x81;  /* ADC IN0 */
+	GPIOSetDir(PORT0, 11, 0);
+	LPC_IOCON->R_PIO1_0 &= ~0x8F;
+	LPC_IOCON->R_PIO1_0 |= 0x81;  /* ADC IN1 */
+	GPIOSetDir(PORT1, 0, 0);
+	LPC_IOCON->R_PIO1_1 &= ~0x8F;
+	LPC_IOCON->R_PIO1_1 |= 0x81;  /* ADC IN2 */
+	GPIOSetDir(PORT1, 1, 0);
+	LPC_IOCON->R_PIO1_2 &= ~0x8F;
+	LPC_IOCON->R_PIO1_2 |= 0x81; /* ADC IN3 */
+	GPIOSetDir(PORT1, 2, 0);
+	GPIOSetDir(PORT3, 0, 0);
+	GPIOSetDir(PORT3, 1, 0);
+	GPIOSetDir(PORT2, 3, 0);
+	LPC_IOCON->PIO1_11   &= ~0x8E; /* Clear bit7, change to analog mode. */
+	LPC_IOCON->PIO1_11   |= 0x80;  /* ADC IN7 */
+	GPIOSetDir(PORT1, 11, 0);
+	GPIOSetDir(PORT3, 2, 0);
+
+	LPC_IOCON->PIO1_4 &= ~0x0F;
+	LPC_IOCON->PIO1_4 |= 0x01; /* ADC IN5 */
+
+	// Set up display serial pins
+	GPIOSetDir(PORT2, 8, 1); // DAT
+	GPIOSetValue(PORT2, 8, 0);
+	GPIOSetDir(PORT2, 1, 1); // CS
+	GPIOSetValue(PORT2, 1, 1);
+	GPIOSetDir(PORT0, 3, 1); // CLK
+	GPIOSetValue(PORT0, 3, 0);
+
+	// Set up ADC inputs
+
+	/* Disable Power down bit to the ADC block. */
+	LPC_SYSCON->PDRUNCFG &= ~(0x1<<4);
+
+	/* Enable AHB clock to the ADC. */
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<13);
+
+
+	LPC_IOCON->PIO1_4    &= ~0x8F; /* Clear bit7, change to analog mode. */
+	LPC_IOCON->PIO1_4    |= 0x01;  /* ADC IN5 */
+
+	LPC_ADC->CR = ( 0x01 << 0 ) |  /* select AD0 on PIO0_11. SEL=1,select channel 0~7 on ADC0 */
+		( ( SystemCoreClock / ADC_CLK - 1 ) << 8 ) |  /* CLKDIV = Fpclk / 1000000 - 1 */
+		( 0 << 16 ) | 		/* BURST = 0, no BURST, software controlled */
+		( 0 << 17 ) |  		/* CLKS = 0, 11 clocks/10 bits */
+		( 1 << 21 ) |  		/* PDN = 1, normal operation */
+		( 0 << 22 ) |  		/* TEST1:0 = 00 */
+		( 0 << 24 ) |  		/* START = 0 A/D conversion stops */
+		( 0 << 27 );		/* EDGE = 0 (CAP/MAT singal falling,trigger A/D conversion) */
+	return;
+}
+
+uint32_t read_dip_switch() {
+	uint32_t retVal = 0;
+
+	if(GPIOGetValue(PORT0, 6)) {
+		retVal |= (1 << 0);
+	}
+
+	if(GPIOGetValue(PORT0, 7)) {
+		retVal |= (1 << 1);
+	}
+
+	if(GPIOGetValue(PORT2, 10)) {
+		retVal |= (1 << 2);
+	}
+
+	if(GPIOGetValue(PORT2, 2)) {
+		retVal |= (1 << 3);
+	}
+
+	if(GPIOGetValue(PORT0, 8)) {
+		retVal |= (1 << 4);
+	}
+
+	if(GPIOGetValue(PORT1, 10)) {
+		retVal |= (1 << 5);
+	}
+
+	if(GPIOGetValue(PORT2, 11)) {
+		retVal |= (1 << 6);
+	}
+
+	if(GPIOGetValue(PORT0, 11)) {
+		retVal |= (1 << 7);
+	}
+
+	return retVal;
+}
+
+void setup_timer() {
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<7);
+	LPC_TMR16B1->PR  = 0x00;
+	LPC_TMR16B0->MR0 = (SystemCoreClock/1000 - 1);
+	LPC_TMR16B0->MCR = 3;
+	NVIC_EnableIRQ(TIMER_16_0_IRQn);
+	LPC_TMR16B0->TCR = 1;
+	return;
+}
+
+volatile uint8_t powerStatusCount = 0;
+
+void TIMER16_0_IRQHandler(void)
+{
+	if ( LPC_TMR16B0->IR & 0x1 )
+	{
+		LPC_TMR16B0->IR = 1;			/* clear interrupt flag */
+		heartbeatCounter++;
+		if(heartbeatCounter > 1000) {
+			heartbeatCounter = 0;
+		}
+
+        powerStatusCount++;
+        if(powerStatusCount >= 10) {
+            powerStatusCount = 0;
+            powerStatusPollingFlag = 1;
+        }
+	}
+
+	return;
+}

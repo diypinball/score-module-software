@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;base-module-software&apos; to &apos;score-module-software&apos;" description="Rename resource &apos;base-module-software&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/base-module-software" name="score-module-software" stamp="1383101074034" updateReferences="true"/>
+</session>
